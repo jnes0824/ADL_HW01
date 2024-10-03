@@ -8,3 +8,4 @@ output_*
 output_QA
 wandb/
 *.safetensors
+./transformers/

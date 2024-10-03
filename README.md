@@ -9,7 +9,9 @@ conda should be installed
 3. `$conda env create -f environment.yml`
 4. `$conda activate ./env`(assume the env is created in the working dir)
 5. check the dependency by running `python test.py`
-
+6. `$git clone https://github.com/huggingface/transformers.git`
+7. replace ./transformers/examples/pytorch/question-answering/run_swag_no_trainer.py with run_swag_no_trainer.py 
+8. replace ./transformers/examples/pytorch/question-answering/run_qa_no_trainer.py with run_qa_no_trainer.py 
 ## Preprocessing Data
 `$python ./data/preprocess_QA.py`
 `$python ./data/preprocess_test.py`
