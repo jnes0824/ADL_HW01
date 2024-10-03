@@ -1,0 +1,10 @@
+hugging_face_key
+env/
+*.json
+*.csv
+ntu-adl-2024-hw-1-chinese-extractive-qa.zip
+*.log
+output_*
+output_QA
+wandb/
+*.safetensors
