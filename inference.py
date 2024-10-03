@@ -5,7 +5,7 @@ import json
 from tqdm import tqdm
 
 
-multiple_choice_model_path = "./output_multiple_choice3"
+multiple_choice_model_path = "./output_multiple_choice"
 
 multiple_choice_model =  BertForMultipleChoice.from_pretrained(multiple_choice_model_path)
 multiple_choice_tokenizer = BertTokenizer.from_pretrained(multiple_choice_model_path)
@@ -13,7 +13,7 @@ multiple_choice_tokenizer = BertTokenizer.from_pretrained(multiple_choice_model_
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 multiple_choice_model.to(device)  # 將多選題模型移動到 GPU
 
-QA_model_path = "./output_QA8"
+QA_model_path = "./output_QA"
 QA_model = pipeline("question-answering", model=QA_model_path, device=0)
 
 
