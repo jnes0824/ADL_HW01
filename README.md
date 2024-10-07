@@ -19,16 +19,22 @@ conda should be installed
 ## Training 
 - training the multiple choice model
 ```
-$accelerate launch ./transformers/examples/pytorch/question-answering/run_qa_no_trainer.py --model_name_or_path hfl/chinese-macbert-large --train_file ./data/QA_train_data.json --validation_file ./data/QA_validation_data.json --max_seq_length 512 --per_device_train_batch_size 8 --gradient_accumulation_steps 4 --num_train_epochs 2 --learning_rate 2e-5 --weight_decay 0.02 --lr_scheduler_type linear --with_tracking --report_to wandb --output_dir ./output_QA --checkpointing_steps epoch
+$accelerate launch ./run_swag_no_trainer.py --model_name_or_path hfl/chinese-bert-wwm-ext --max_seq_length 512 --per_device_train_batch_size 4 --gradient_accumulation_steps 4 --num_train_epochs 3 --learning_rate 2e-5 --weight_decay 0.01 --lr_scheduler_type linear --train_file ./data/multiplechoice_train_data.json --validation_file ./data/multiplechoice_validation_data.json --with_tracking --report_to wandb --output_dir ./output_multiple_choice --checkpointing_steps epoch
 ```
 
 - training the QA model
 ```
-$accelerate launch ./transformers/examples/pytorch/multiple-choice/run_swag_no_trainer.py --model_name_or_path hfl/chinese-bert-wwm-ext --max_seq_length 512 --per_device_train_batch_size 4 --gradient_accumulation_steps 4 --num_train_epochs 3 --learning_rate 2e-5 --weight_decay 0.01 --lr_scheduler_type linear --checkpointing_steps 679 --train_file ./data/multiplechoice_train_data.json --validation_file ./data/multiplechoice_validation_data.json --with_tracking --report_to wandb --output_dir ./output_multiple_choice
+$accelerate launch ./run_qa_no_trainer.py --model_name_or_path hfl/chinese-macbert-large --train_file ./data/QA_train_data.json --validation_file ./data/QA_validation_data.json --max_seq_length 512 --per_device_train_batch_size 8 --gradient_accumulation_steps 4 --num_train_epochs 2 --learning_rate 2e-5 --weight_decay 0.02 --lr_scheduler_type linear --with_tracking --report_to wandb --output_dir ./output_QA --checkpointing_steps epoch
+```
+- train the mutiple choice model without pre-trained weight
+```
+python ./from_scratch.py --model_name_or_path hfl/chinese-bert-wwm-ext --max_seq_length 512 --per_device_train_batch_size 4 --gradient_accumulation_steps 4 --num_train_epochs 3 --learning_rate 2e-5 --weight_decay 0.01 --lr_scheduler_type linear --train_file ./data/multiplechoice_train_data.json --validation_file ./data/multiplechoice_validation_data.json --with_tracking --report_to wandb --output_dir ./from_scratch --checkpointing_steps epoch
 ```
 
 ## inference
-`$python inference.py`
+`$python ./inference.py ./data/context.json ./data/test.json ./submission.csv`
+或是
+`$bash ./run.sh ./data/context.json ./data/test.json ./submission.csv`
 
 ## submit to kaggle
 `$kaggle competitions submit -c ntu-adl-2024-hw-1-chinese-extractive-qa -f submission.csv -m "Message"`

@@ -9,3 +9,4 @@ output_QA
 wandb/
 *.safetensors
 ./transformers/
+*.zip
