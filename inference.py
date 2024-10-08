@@ -15,8 +15,8 @@ def parse_args():
 
 def main():
     args = parse_args()
-    multiple_choice_model_path = "./output_multiple_choice"
-    QA_model_path = "./output_QA"
+    multiple_choice_model_path = "./unzipped/output_multiple_choice"
+    QA_model_path = "./unzipped/output_QA"
 
     multiple_choice_model =  BertForMultipleChoice.from_pretrained(multiple_choice_model_path)
     multiple_choice_tokenizer = BertTokenizer.from_pretrained(multiple_choice_model_path)
