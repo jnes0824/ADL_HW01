@@ -24,7 +24,7 @@ fi
 
 # 解壓縮文件
 echo "正在解壓縮 $FILE_NAME..."
-unzip $FILE_NAME -d ./unzipped
+unzip $FILE_NAME 
 
 # 檢查解壓縮是否成功
 if [ $? -ne 0 ]; then

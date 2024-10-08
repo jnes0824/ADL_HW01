@@ -28,7 +28,7 @@ accelerate launch ./run_qa_no_trainer.py --model_name_or_path hfl/chinese-macber
 - or download the above model with download.sh
 ```
 chmod +x download.sh
- 
+bash ./download.sh
 ```
 
 - train the mutiple choice model without pre-trained weight
@@ -37,9 +37,11 @@ python ./from_scratch.py --model_name_or_path hfl/chinese-bert-wwm-ext --max_seq
 ```
 
 ## inference
-`python ./inference.py ./data/context.json ./data/test.json ./submission.csv`
-或是
-`bash ./run.sh ./data/context.json ./data/test.json ./submission.csv`
+```
+- chmod +x run.sh
+bash ./run.sh ./data/context.json ./data/test.json ./submission.csv
+```
+- 或是`python ./inference.py ./data/context.json ./data/test.json ./submission.csv`
 
 ## submit to kaggle
 `kaggle competitions submit -c ntu-adl-2024-hw-1-chinese-extractive-qa -f submission.csv -m "Message"`
